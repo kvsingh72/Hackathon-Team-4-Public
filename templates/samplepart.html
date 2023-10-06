@@ -1,0 +1,32 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RP Flask REST API</title>
+</head>
+<body>
+    <h1>
+        This is a sample part page.
+    </h1>
+<script>// GET is the default method, so we don't need to set it
+fetch('/parts')
+    .then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        console.log('Requested part');
+        console.log(text); // Print the greeting as text
+    });
+
+// Send the same request
+fetch('/parts')
+    .then(function (response) {
+        return response.json(); // But parse it as JSON this time
+    })
+    .then(function (json) {
+        console.log('Requested part as JSON:');
+        console.log(json); // Here’s our JSON object
+    })</script>
+</body>
+</html>

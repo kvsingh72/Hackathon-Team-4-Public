@@ -1,32 +1,60 @@
-import os
-from flask import Flask, jsonify, Response, render_template
+from flask import Flask, render_template, jsonify
 
 
 def create_app():
     app = Flask(__name__)
 
-    # Error 404 handler
-    @app.errorhandler(404)
-    def resource_not_found(e):
-        return jsonify(error=str(e)), 404
+    parts = {
+        'lowpressure': {
+            'name': 'Low Tire Pressure Warning',
+            'image': 'lowpressure.jpg',
+            'description': 'This illuminates when your tire pressure is low. If the lamp remains on with the engine '
+                           'running or when driving, check your tire pressure as soon as possible. It will also '
+                           'illuminate momentarily when you switch the ignition on to confirm the lamp is functional. '
+                           'If it does not illuminate when you switch the ignition on, or begins to flash at any '
+                           'time, have the system checked by your authorized dealer.'
+        },
+        'autolamps': {
+            'name': 'Autolamps',
+            'image': 'autolamps.jpg',
+            'description': 'When the lighting control is in the autolamps position, the headlamps turn on in low '
+                           'light situations, or when the wipers turn on. The headlamps remain on for a period of '
+                           'time after you switch the ignition off. Use the information display controls to adjust '
+                           'the period of time that the headlamps remain on.'
+        },
+        'meme': {
+            'name': 'Meme',
+            'image': 'meme.jpg',
+            'description': 'The world\'s greatest meme, guaranteed.'
+        }
+    }
 
-    # Error 405 handler
-    @app.errorhandler(405)
-    def resource_not_found(e):
-        return jsonify(error=str(e)), 405
+    # a simple response that returns OK
+    @app.route('/')
+    def send_ok():
+        return render_template("index.html")
 
-    # Error 401 handler
-    @app.errorhandler(401)
-    def custom_401(error):
-        return Response("API Key required.", 401)
+    @app.route('/qr')
+    def qr():
+        return render_template("qr.html")
 
-    @app.route("/")
-    def home():
-        return render_template('home.html')
+    @app.route('/details')
+    def details():
+        return render_template("details.html")
 
-    @app.route("/bronco_sport_2021_ignition")
-    def bronco_sport_ignition():
-        return render_template('bronco_sport_2021_ignition.html')
+    @app.route('/scans')
+    def scans():
+        return render_template("scans.html")
+
+    @app.route('/parts/<part>', methods=['GET'])
+    def disp(part):
+        data = {
+            'name': parts[part]["name"],
+            'image': parts[part]["image"],
+            'description': parts[part]["description"]
+        }
+
+        return jsonify(data)
 
     return app
 

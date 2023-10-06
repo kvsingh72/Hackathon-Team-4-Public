@@ -1,0 +1,50 @@
+.indexMain {
+    background-image: url("Services.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: "Trebuchet MS", sans-serif;
+ }
+
+.plain {
+    background-image: url("QR.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: "Trebuchet MS", sans-serif;
+  }
+
+.column {
+   float: left;
+   width: 33.33%;
+   padding: 0px;
+ }
+ 
+ .columnTwo{
+   margin-top: 5%;
+   float: left;
+   width: 50%;
+   padding: 0px;
+   text-align: center;
+ } 
+ .columnButton{
+   margin-top: 10%;
+   float: left;
+   width: 50%;
+   padding: 0px;
+   text-align: center;
+ } 
+ /* Clearfix (clear floats) */
+.row::after {
+   content: "";
+   clear: both;
+   display: table;
+ }
+
+.centerPic {
+   text-align: center;
+}
+
+.bigheading {
+    font-size: 32pt;
+    font-weight: bold;
+    margin-top: 20%;
+}

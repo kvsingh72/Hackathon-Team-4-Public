@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title> Name of Button </title>
+
+
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+
+  </head>
+  
+  <body class = "plain">
+<script>fetch('/parts/lowpressure')
+  .then(response => response.json())
+  .then(data => {
+    const titleElement = document.querySelector('h1');
+    titleElement.textContent = data.name;
+    const contentElement = document.querySelector('img');
+    contentElement.innerHTML = data.image;
+    const descriptionElement = document.querySelector('p');
+    descriptionElement.textContent = data.description;
+  })
+  .catch(error => console.error(error));
+</script>
+    <div class="centerPic">
+        <h1 class="bigheading">Name of Button</h1>
+    <img src="../static/temp.png" style="width:800px;height:800px;margin-top: 100px;">
+    </div>
+    </br>
+    <p>This is blah blah</p>
+
+    <div class = "row">
+        <div class="columnButton">
+            <a href="/qr">
+            <!-- Scan again -->
+            <img src="../static/scan%20again.png" style="width:300px;height:300px;">
+            </a>
+            </br><h1 style="margin-top: 2%;">Scan Again</h1>
+        </div>
+        <div class="columnButton">
+            <a href="/scans">
+                <!-- Recent scans -->
+                <img src="../static/recent%20scans.png" style="width:300px;height:300px;">
+            </a>
+            </br><h1 style="margin-top: 2%;">Recent Scans</h1>
+        </div>
+    </div>
+    </body>
+</html>
