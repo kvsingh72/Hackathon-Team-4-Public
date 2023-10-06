@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, Response
+from flask import Flask, jsonify, Response, render_template
 
 
 def create_app():
@@ -22,15 +22,11 @@ def create_app():
 
     @app.route("/")
     def home():
-        return "This is a home page"
+        return render_template('home.html')
 
-    @app.route("/bronco-sport")
-    def bronco_sport():
-        return "This is a bronco sport"
-
-    @app.route("/bronco-sport/ignition")
+    @app.route("/bronco_sport_2021_ignition")
     def bronco_sport_ignition():
-        return "This is the ignition for the bronco sport. It starts the car."
+        return render_template('bronco_sport_2021_ignition.html')
 
     return app
 
